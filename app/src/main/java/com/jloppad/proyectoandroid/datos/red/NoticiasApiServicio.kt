@@ -7,8 +7,8 @@ import retrofit2.http.Query
 interface NoticiasApiServicio {
     @GET("v2/everything")
     suspend fun obtenerNoticias(
-        @Query("q") busqueda: String = "Apple",
-        @Query("sortBy") ordenar: String = "popularity",
+        @Query("q") busqueda: String,
+        @Query("sortBy") ordenar: String,
         @Query("apiKey") claveApi: String
     ): RespuestaNoticias
 }

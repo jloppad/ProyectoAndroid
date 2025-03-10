@@ -31,7 +31,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            // Imagen de la noticia
             if (!noticia.urlToImage.isNullOrEmpty()) {
                 Image(
                     painter = rememberAsyncImagePainter(noticia.urlToImage),
@@ -58,7 +57,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Título
             Text(
                 text = noticia.title,
                 style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
@@ -67,7 +65,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Fuente y Autor
             Text(
                 text = "Fuente: ${noticia.source.name}",
                 style = MaterialTheme.typography.body2,
@@ -81,7 +78,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
                 )
             }
 
-            // Fecha de publicación
             Text(
                 text = "Publicado el: ${noticia.publishedAt}",
                 style = MaterialTheme.typography.body2,
@@ -90,7 +86,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
 
             Divider(modifier = Modifier.padding(vertical = 12.dp))
 
-            // Descripción
             Text(
                 text = noticia.description ?: "Sin descripción",
                 style = MaterialTheme.typography.body1,
@@ -99,7 +94,6 @@ fun DetalleNoticiaPantalla(noticia: Articulo) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Botón "Leer más"
             Button(
                 onClick = {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(noticia.url))
