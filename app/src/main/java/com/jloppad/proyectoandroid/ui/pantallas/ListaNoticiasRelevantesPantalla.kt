@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
@@ -24,7 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.jloppad.proyectoandroid.datos.modelo.Articulo
@@ -40,6 +44,8 @@ fun ListaNoticiasRelevantesPantalla(
     onBusquedaChange: (String) -> Unit,
     busqueda: String
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
             value = busqueda,
@@ -52,7 +58,15 @@ fun ListaNoticiasRelevantesPantalla(
                 unfocusedBorderColor = Color.Gray,
                 cursorColor = Blue700
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            )
         )
 
         error?.let {
@@ -94,7 +108,13 @@ fun ListaNoticiasRelevantesPantalla(
                                         .height(200.dp),
                                     contentScale = ContentScale.Crop
                                 )
-                                Text(text = noticia.title, modifier = Modifier.padding(8.dp), color = Color.Black, fontWeight = FontWeight.Normal, style = MaterialTheme.typography.h6)
+                                Text(
+                                    text = noticia.title,
+                                    modifier = Modifier.padding(8.dp),
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Normal,
+                                    style = MaterialTheme.typography.h6
+                                )
                             }
                         }
                     }

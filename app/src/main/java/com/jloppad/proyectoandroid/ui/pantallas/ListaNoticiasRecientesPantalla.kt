@@ -7,13 +7,17 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.jloppad.proyectoandroid.datos.modelo.Articulo
@@ -29,6 +33,8 @@ fun ListaNoticiasRecientesPantalla(
     onBusquedaChange: (String) -> Unit,
     busqueda: String
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
             value = busqueda,
@@ -41,7 +47,15 @@ fun ListaNoticiasRecientesPantalla(
                 unfocusedBorderColor = Color.Gray,
                 cursorColor = Blue700
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            )
         )
 
         error?.let {
@@ -98,5 +112,6 @@ fun ListaNoticiasRecientesPantalla(
         }
     }
 }
+
 
 

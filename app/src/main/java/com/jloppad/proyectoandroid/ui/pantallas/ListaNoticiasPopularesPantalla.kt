@@ -19,6 +19,10 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.text.font.FontWeight
 import com.jloppad.proyectoandroid.ui.theme.Blue500
 import com.jloppad.proyectoandroid.ui.theme.Blue700
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 
 @Composable
 fun ListaNoticiasPopularesPantalla(
@@ -29,6 +33,8 @@ fun ListaNoticiasPopularesPantalla(
     onBusquedaChange: (String) -> Unit,
     busqueda: String
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
             value = busqueda,
@@ -41,7 +47,15 @@ fun ListaNoticiasPopularesPantalla(
                 unfocusedBorderColor = Color.Gray,
                 cursorColor = Blue700
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            )
         )
 
         error?.let {
@@ -83,7 +97,13 @@ fun ListaNoticiasPopularesPantalla(
                                         .height(200.dp),
                                     contentScale = ContentScale.Crop
                                 )
-                                Text(text = noticia.title, modifier = Modifier.padding(8.dp), color = Color.Black, fontWeight = FontWeight.Normal, style = MaterialTheme.typography.h6)
+                                Text(
+                                    text = noticia.title,
+                                    modifier = Modifier.padding(8.dp),
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Normal,
+                                    style = MaterialTheme.typography.h6
+                                )
                             }
                         }
                     }

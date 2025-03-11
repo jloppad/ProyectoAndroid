@@ -1,5 +1,6 @@
 package com.jloppad.proyectoandroid.ui.navegacion
 
+import NoticiasViewModel
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -10,7 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun BottomNavigationBar(navController: NavController, viewModel: NoticiasViewModel) {
     val items = listOf(Pantalla.Populares, Pantalla.Recientes, Pantalla.Relevantes)
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -21,6 +22,7 @@ fun BottomNavigationBar(navController: NavController) {
                 label = { Text(text = pantalla.titulo) },
                 selected = currentRoute == pantalla.ruta,
                 onClick = {
+                    viewModel.cambiarPantalla(pantalla.tipoNoticia)
                     navController.navigate(pantalla.ruta) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true

@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
+import com.jloppad.proyectoandroid.datos.modelo.TipoNoticia
 import com.jloppad.proyectoandroid.ui.pantallas.ListaNoticiasPopularesPantalla
 import com.jloppad.proyectoandroid.ui.pantallas.DetalleNoticiaPantalla
 import com.jloppad.proyectoandroid.ui.pantallas.ListaNoticiasRecientesPantalla
@@ -30,7 +31,7 @@ fun Navegacion(viewModel: NoticiasViewModel) {
 
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(navController)
+            BottomNavigationBar(navController, viewModel)
         }
     ) { paddingValues ->
         NavHost(
@@ -47,7 +48,7 @@ fun Navegacion(viewModel: NoticiasViewModel) {
                         navController.navigate("detalleNoticia/${Uri.encode(noticia.title)}")
                     },
                     onBusquedaChange = { nuevaBusqueda ->
-                        viewModel.actualizarBusqueda(nuevaBusqueda)
+                        viewModel.actualizarBusqueda(nuevaBusqueda, TipoNoticia.POPULARES)
                     },
                     busqueda = busqueda
                 )
@@ -62,7 +63,7 @@ fun Navegacion(viewModel: NoticiasViewModel) {
                         navController.navigate("detalleNoticia/${Uri.encode(noticia.title)}")
                     },
                     onBusquedaChange = { nuevaBusqueda ->
-                        viewModel.actualizarBusqueda(nuevaBusqueda)
+                        viewModel.actualizarBusqueda(nuevaBusqueda, TipoNoticia.RECIENTES)
                     },
                     busqueda = busqueda
                 )
@@ -77,7 +78,7 @@ fun Navegacion(viewModel: NoticiasViewModel) {
                         navController.navigate("detalleNoticia/${Uri.encode(noticia.title)}")
                     },
                     onBusquedaChange = { nuevaBusqueda ->
-                        viewModel.actualizarBusqueda(nuevaBusqueda)
+                        viewModel.actualizarBusqueda(nuevaBusqueda, TipoNoticia.RELEVANTES)
                     },
                     busqueda = busqueda
                 )
