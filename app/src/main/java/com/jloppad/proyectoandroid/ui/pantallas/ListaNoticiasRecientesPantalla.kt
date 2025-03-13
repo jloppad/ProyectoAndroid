@@ -21,8 +21,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.jloppad.proyectoandroid.datos.modelo.Articulo
-import com.jloppad.proyectoandroid.ui.theme.Blue500
-import com.jloppad.proyectoandroid.ui.theme.Blue700
+import com.jloppad.proyectoandroid.ui.tema.Blue500
+import com.jloppad.proyectoandroid.ui.tema.Blue700
 
 @Composable
 fun ListaNoticiasRecientesPantalla(

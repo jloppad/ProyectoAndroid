@@ -17,8 +17,8 @@ import com.jloppad.proyectoandroid.datos.modelo.Articulo
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.text.font.FontWeight
-import com.jloppad.proyectoandroid.ui.theme.Blue500
-import com.jloppad.proyectoandroid.ui.theme.Blue700
+import com.jloppad.proyectoandroid.ui.tema.Blue500
+import com.jloppad.proyectoandroid.ui.tema.Blue700
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController

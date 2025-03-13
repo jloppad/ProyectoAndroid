@@ -1,4 +1,4 @@
-package com.jloppad.proyectoandroid.ui.theme
+package com.jloppad.proyectoandroid.ui.tema
 
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Typography

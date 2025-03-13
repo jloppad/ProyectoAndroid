@@ -1,4 +1,4 @@
-package com.jloppad.proyectoandroid.ui.theme
+package com.jloppad.proyectoandroid.ui.tema
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
